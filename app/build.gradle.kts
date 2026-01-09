@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.compose")
+
 }
 
 android {
@@ -35,6 +37,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+    compose = true
+}
+
+
+
 }
 
 dependencies {
@@ -44,4 +52,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
+implementation(composeBom)
+androidTestImplementation(composeBom)
+
+implementation("androidx.activity:activity-compose:1.9.1")
+implementation("androidx.compose.ui:ui")
+implementation("androidx.compose.ui:ui-tooling-preview")
+implementation("androidx.compose.material3:material3")
+
+debugImplementation("androidx.compose.ui:ui-tooling")
+debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 }
